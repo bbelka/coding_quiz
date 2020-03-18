@@ -23,10 +23,24 @@ li{
   font-size: larger;
 }
 
+h1{
+  text-align: center;
+}
+
+h4{
+  text-align: center;
+}
+
+#countdown{
+  text-align: center;
+  font-weight: bold;
+}
+
 #table{
   width:500px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 #buttonDiv{

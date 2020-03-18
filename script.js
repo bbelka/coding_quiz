@@ -18,7 +18,6 @@ var headingEl = document.querySelector('#heading');
 var questionsEl = document.querySelector('#question');
 var initialText = document.querySelector('#initialInput-text');
 var initialForm = document.querySelector('#initialInput-form')
-// var initialDiv = document.querySelector
 var listEl = document.querySelector('#answerList');
 var rightWrongEl = document.querySelector(`#rightOrWrong`);
 var scoreTable = document.querySelector('#scoreTable');
@@ -29,68 +28,68 @@ var button3 = document.querySelector('#button3');
 var button4 = document.querySelector('#button4');
 var questionCounter = 0;
 var correctAnsCounter = 0;
+var timeleft = 75;
 
-
+//loads question loop, starts timer
 document.getElementById("button1").addEventListener("click", function () {
-    // function startTimer(duration, display) {
-    //     var timer = duration, minutes, seconds;
-    //     setInterval(function () {
-    //         minutes = parseInt(timer / 60, 10);
-    //         seconds = parseInt(timer % 60, 10);
-
-    //         minutes = minutes < 10 ? "0" + minutes : minutes;
-    //         seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    //         display.textContent = minutes + ":" + seconds;
-
-    //         if (--timer < 0) {
-    //             timer = duration;
-    //         }
-    //     }, 1000);
-    // }
-
-    // button1.onclick = function () {
-    //     var fiveMinutes = 60 * 5,
-    //         display = document.querySelector('#time');
-    //     startTimer(fiveMinutes, display);
-    // };
     questionScreen();
-
+    timer();
 });
 
+//button to clear high scores
 document.getElementById("button3").addEventListener("click", function () {
     localStorage.clear();
     scoreTable.innerHTML = "";
 });
 
-
+//start over
 document.getElementById("button4").addEventListener("click", function () {
     questionCounter = 0;
     correctAnsCounter = 0;
     startScreen();
 });
 
+//answer check list click event
 document.getElementById("answerList").addEventListener("click", function () {
-    rightWrongEl.style.visibility = "visible";
     if (event.target.textContent === correctAns) {
         rightWrongEl.id = "response";
+        rightWrongEl.style.visibility = "visible";
         rightWrongEl.textContent = "Correct!!";
         correctAnsCounter = correctAnsCounter + 1;
     }
     else {
+        rightWrongEl.style.visibility = "visible";
         rightWrongEl.textContent = "Wrong!"
+        timeleft = timeleft - 10;
     };
     questionCounter = questionCounter + 1;
     console.log(questionCounter);
     questionScreen();
 });
 
+//stores initials/score, loads high score screen
 document.getElementById("button2").addEventListener("click", function () {
     var initials = initialText.value;
     localStorage.setItem(initials, correctAnsCounter);
     highScoreScreen();
 });
 
+//timer
+function timer() {
+    timeleft = 75
+    var downloadTimer = setInterval(function function1() {
+        document.getElementById("countdown").innerHTML = timeleft +
+            "&nbsp" + "seconds remaining";
+        timeleft -= 1;
+        if (timeleft <= 0) {
+            clearInterval(downloadTimer);
+            document.getElementById("countdown").innerHTML = "Time is up!"
+            scoreSubmitScreen();
+        }
+    }, 1000);
+}
+
+//clear
 function clear() {
     headingEl.textContent = "";
     questionsEl.textContent = "";
@@ -104,7 +103,6 @@ function clear() {
     button3.style.visibility = "hidden";
     button4.style.visibility = "hidden";
     scoreTable.innerHTML = ""
-
 }
 
 //starting screen
@@ -122,7 +120,6 @@ function startScreen() {
     button1.textContent = "Continue";
     button1.style.backgroundColor = "orange";
     button2.style.visibility = "hidden";
-
 };
 
 //question screens
@@ -135,23 +132,12 @@ function questionScreen() {
 
     if (questionCounter < questionArr.length) {
         clear();
-
         headingEl.textContent = "Question #" + (questionCounter + 1);
-        console.log(headingEl);
-
         questionsEl.textContent = questionArr[questionCounter].question;
-        console.log(questionsEl);
-
         possArr = questionArr[questionCounter].options;
-        console.log(possArr);
-
         correctAns = questionArr[questionCounter].answer;
-        console.log(correctAns);
-
         listEl.textContent = "";
-
         rightWrongEl.style.visibility = "visible";
-
         for (var i = 0; i < possArr.length; i++) {
             var node = document.createElement("LI");
             var node1 = document.createElement("BUTTON")
@@ -162,25 +148,19 @@ function questionScreen() {
         };
     }
     else {
+        clearTimeout(timer());
         scoreSubmitScreen();
     }
 
 };
 
-startScreen();
-// highScoreScreen();
 // scoreSubmitScreen();
-
-
-//final screen
 //score
 //text area to enter initials
 //button to submit initials
 //local storage
-//onclick 
 //local storage initials and score
 //go to high scores page
-
 function scoreSubmitScreen() {
     clear();
     headingEl.textContent = "Your score is: " + correctAnsCounter;
@@ -198,6 +178,8 @@ function scoreSubmitScreen() {
 //start quiz over
 function highScoreScreen() {
     clear();
+    headingEl.style.visibility = "visible";
+    headingEl.textContent = "High Scores"
     for (var i = 0; i < localStorage.length; i++) {
 
         var node = document.createElement("TR");
@@ -218,7 +200,4 @@ function highScoreScreen() {
     tableDiv.style.display = "inherit";
 };
 
-    //button to clear high scores
-        //onclick
-            //clear local storage
-            //start quiz over
+startScreen();
