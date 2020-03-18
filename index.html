@@ -5,36 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>Coding Quiz</title>
 </head>
 
 <body>
-    <div>Registration closes in <span id="time">05:00</span> minutes!</div>
-    <H1 id="heading"></H1>
-    <h4 id="question">
-    </h4>
-    <!-- <textarea name="initialInput" id="initialInput" cols="30" rows="1" maxlength="3">
-    </textarea> -->
-    <!-- <div id="initial-form"> -->
-    <form id="initialInput-form" method="POST">
-        <!-- <label for="todo-text">Add a Todo:</label> -->
-        <input type="text" placeholder="Initials" name="initialInput-text" id="initialInput-text" />
-    </form>
-    <!-- </div> -->
-    <br>
-    <ol id="answerList"></ol>
-    <div id="table">
-        <table id="scoreTable">
+    <!-- <div>Registration closes in <span id="time">05:00</span> minutes!</div> -->
+        <H1 id="heading">
+        </H1>
+        <h4 id="question">
+        </h4>
+        <form id="initialInput-form" method="POST">
+            <input type="text" placeholder="Initials" name="initialInput-text" id="initialInput-text" />
+        </form>
 
-        </table>
-    </div>
-    <button id="button1"></button>
-    <button id="button2"></button>
-    <button id="button3"></button>
-    <button id="button4"></button>
+        <br>
 
-    <p id=rightOrWrong></p>
-    <script src="./script.js"></script>
+        <div id="answerDiv">
+        <ol id="answerList">
+        </ol>
+        </div>
+
+        <div id="table">
+            <table id="scoreTable">
+            </table>
+        </div>
+
+        <div id="buttonDiv">
+        <button id="button1"></button>
+        <button id="button2"></button>
+        <button id="button3"></button>
+        <button id="button4"></button>
+        </div>
+
+        <p id=rightOrWrong></p>
+        <script src="./script.js"></script>
+    
 </body>
 
 </html>

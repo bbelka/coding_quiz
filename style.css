@@ -2,7 +2,7 @@ body {
   width: 500px;
   margin-left: auto;
   margin-right: auto;
-  background-color: chartreuse;
+  background-color: wheat;
 }
 
 #response{
@@ -12,10 +12,40 @@ font-weight: bold;
 
 table{
   border: 5px solid black;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+li{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: larger;
+}
+
+#table{
+  width:500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#buttonDiv{
+  width:500px;
+}
+ 
+#answerDiv{
+  width: 500px;
 }
 
 td, th{
   border: 1px solid black;
   padding:15px;
   text-align: center;
+}
+
+button{
+  width: (500/4)px;
+  background-color: green;
+  font-weight: bold;
+  font-size: larger;
 }
